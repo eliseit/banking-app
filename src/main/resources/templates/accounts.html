@@ -7,12 +7,59 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<header>
+    <h1>My Home Bank</h1>
+</header>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/accounts">My Accounts</a>
+</nav>
+
 <main>
     <section>
         <p th:text="'Hello, ' + ${name} + '!'"/>
     </section>
+
+    <button id="activateForm" onclick="activateForm();">Create Savings Account!</button>
+
+    <section hidden id="newAccount">
+        <h1>Create New Savings account</h1>
+
+        <form action="#" method="post" th:action="@{/accounts}" th:object="${account}">
+
+            <label for="currency">Choose currency: </label>
+            <select id="currency" th:field="*{currency}">
+                <option selected="selected" value="ron"><strong>RON</strong></option>
+                <option value="eur">&euro; Euro</option>
+                <option value="usd">&#36; US Dollar</option>
+                <option value="gbp">&#163; Liră sterlină</option>
+            </select>
+
+            <label for="amount">Amount: </label>
+            <input id="amount" max="99999" min="1" placeholder="0" step="5" th:field="*{amount}" type="number"/>
+
+            <label for="starting">Starting date:</label>
+            <input id="starting" min="01-01-1977" onfocus="(this.type='date')"
+                   placeholder="01-01-1977" type="text">
+
+            <select id="occurrences" th:field="*{currency}">
+                <option selected="selected" value="monthly"><strong>Monthly</strong></option>
+                <option value="weekly">Weekly</option>
+                <option value="bi-weeekly">Bi-Weekly</option>
+            </select>
+
+            <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+        </form>
+    </section>
+
 </main>
-<footer>
+<footer class="stickToBottom">
+    <p id="localDateTime"></p>
+    <script crossorigin="anonymous"
+            integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js" type="text/javascript"></script>
 </footer>
 </body>

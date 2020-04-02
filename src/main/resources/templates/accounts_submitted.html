@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bank App</title>
+    <title>Bank App - Account for ${name}</title>
     <link href="styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
@@ -19,18 +19,10 @@
 
 <main>
     <section>
-        <article>
-            <h2> Welcome</h2>
-            <p>New features are added! Check them in the Accounts section</p>
-        </article>
+        <p th:text="'Saving account created!'"/>
     </section>
-    <aside>
-        <article>
-            <p>Latest news!</p>
-        </article>
-    </aside>
-</main>
 
+</main>
 <footer class="stickToBottom">
     <p id="localDateTime"></p>
     <script crossorigin="anonymous"

@@ -1,4 +1,52 @@
+html {
+    position: relative;
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
+    border: 3px solid #FFFF00;
+}
+
+main {
+
+}
+
+header {
+    border: 3px solid #11FF22;
+}
+
+header h1 {
+    margin: 120px 0;
+    background-color: coral;
+}
+
+nav {
+    margin: 50px 0;
+    background-color: coral;
+    border: 3px solid #73AADD;
+}
+
+nav a {
+    display: inline-block;
+    color: black;
+    padding: 12px 12px;
+    background-color: beige;
+    margin: 10px 10px;
+    text-decoration: none;
+}
+
+nav a:visited {
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #555;
+    color: white;
+}
+
+footer.stickToBottom {
+    position: absolute;
+    right: 0;
+    font-size: .8rem;
+    border: 3px solid #717177;
 }
