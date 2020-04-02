@@ -1,29 +1,39 @@
 html {
     position: relative;
+    height: 100%;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    border: 3px solid #FFFF00;
+    margin: 0;
+    height: 100%;
 }
 
 main {
+    margin-left: 20px;
+}
 
+main.headset {
+    background-color: aliceblue;
+    text-decoration: peachpuff;
 }
 
 header {
-    border: 3px solid #11FF22;
+    background-color: peachpuff;
 }
 
 header h1 {
     margin: 120px 0;
     background-color: coral;
+    text-align: center;
+    font-size: 3.4rem;
+    color: aliceblue;
+    user-select: none;
 }
 
 nav {
     margin: 50px 0;
     background-color: coral;
-    border: 3px solid #73AADD;
 }
 
 nav a {
@@ -35,18 +45,54 @@ nav a {
     text-decoration: none;
 }
 
-nav a:visited {
-    text-decoration: none;
-}
-
 nav a:hover {
     background-color: #555;
     color: white;
 }
 
-footer.stickToBottom {
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: beige;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+    transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #a6a4a2;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+footer {
     position: absolute;
+    background-color: lightgray;
+    border: 1px solid #717177;
+    bottom: 0;
+    width: 100%;
+}
+
+.stickToBottom {
     right: 0;
     font-size: .8rem;
-    border: 3px solid #717177;
+    text-align: right;
+    padding: 2px;
+    margin-right: 8px;
 }

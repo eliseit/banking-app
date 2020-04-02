@@ -10,7 +10,6 @@ let setup = {
 
     let localDateDisplay = document.querySelector("#localDateTime");
     localDateDisplay ? localDateDisplay.innerHTML = formattedDate : "none";
-    console.log(localDateDisplay);
 
     let dateObj = document.querySelector('#starting');
     if (dateObj) {

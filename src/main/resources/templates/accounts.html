@@ -22,6 +22,13 @@
         <p th:text="'Hello, ' + ${name} + '!'"/>
     </section>
 
+    <p class="headset">These are hard times. It does not hurt to do some savings. To make it easier for you
+        <emphasis>now</emphasis>
+        you can create a savings account here, in the comfort of your personal bank! Try it out! <strong>0
+            costs</strong>
+        maximum benefit!
+    </p>
+
     <button id="activateForm" onclick="activateForm();">Create Savings Account!</button>
 
     <section hidden id="newAccount">
@@ -55,8 +62,8 @@
     </section>
 
 </main>
-<footer class="stickToBottom">
-    <p id="localDateTime"></p>
+<footer>
+    <p class="stickToBottom" id="localDateTime"></p>
     <script crossorigin="anonymous"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
