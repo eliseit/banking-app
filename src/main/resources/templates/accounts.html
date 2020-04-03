@@ -56,7 +56,7 @@
 
     <button id="activateForm" onclick="activateForm();">Create Savings Account!</button>
 
-    <section hidden id="newAccount">
+    <section id="newAccount">
         <h1>Create New Savings account</h1>
 
         <form action="#" method="post" th:action="@{/accounts}" th:object="${account}">
@@ -70,7 +70,7 @@
             </select>
 
             <label for="amount">Amount: </label>
-            <input id="amount" max="99999" min="1" placeholder="0" th:field="*{amount}" type="number"/>
+            <input id="amount" max="99999" min="1" placeholder="5" th:field="*{amount}" type="number"/>
 
             <label for="starting">Starting date:</label>
             <input id="starting" min="01-01-1977" onfocus="(this.type='date')"
@@ -87,10 +87,10 @@
         </form>
     </section>
 
+    <p class="stickToBottom" id="localDateTime"></p>
 </main>
 
 <footer>
-    <p class="stickToBottom" id="localDateTime"></p>
     <script crossorigin="anonymous"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

@@ -4,12 +4,14 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    height: 100%;
+    margin: 0 0 32px;
+    height: 88%;
 }
 
 main {
+    position: relative;
     margin-left: 20px;
+    padding-bottom: 90px;
 }
 
 main.headset {
@@ -126,15 +128,15 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 footer {
-    position: absolute;
-    margin-top: 1vh;
-    background-color: lightgray;
-    border: 1px solid #717177;
-    width: 100%;
 }
 
 .stickToBottom {
+    position: absolute;
+    bottom: 0;
     right: 0;
+    margin-top: 1vh;
+    background-color: lightgray;
+    border: 1px solid #717177;
     font-size: .8rem;
     text-align: right;
     padding: 2px;

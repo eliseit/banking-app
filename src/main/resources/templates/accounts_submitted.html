@@ -26,14 +26,13 @@
             <li>Account currency: <span th:text="${account.currency}"></span></li>
             <li>Amount: <span th:text="${account.amount}"></span></li>
             <li>Account type: <span th:text="${account.type}"></span></li>
-            <li>Savings startDate: <span th:text="${account.startingWith}"></span></li>
-            <li>Amount substation frequency: <span th:text="${account.frequency}"></span></li>
+            <li>Start saving from: <span th:text="${account.startingWith}"></span></li>
+            <li>Cycle: <span th:text="${account.frequency}"></span></li>
         </ol>
     </section>
-
+    <p class="stickToBottom" id="localDateTime"></p>
 </main>
 <footer>
-    <p class="stickToBottom" id="localDateTime"></p>
     <script crossorigin="anonymous"
             integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
             src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

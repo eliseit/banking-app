@@ -3,7 +3,7 @@ let setup = {
     collapsed: true
 };
 
-(function today() {
+(function init() {
 
     setup.today = moment(new Date()).format('DD/MM/YYYY');
     let formattedDate = setup.today.toString();
@@ -18,6 +18,8 @@ let setup = {
         dateObj.setAttribute("value", formattedDate);
     }
 
+    document.querySelector("#newAccount").style.visibility = "hidden";
+
     return setup;
 })();
 
@@ -27,11 +29,11 @@ function activateForm() {
     let section = document.querySelector("#newAccount");
 
     if (setup.collapsed) {
-        section.removeAttribute("hidden");
+        section.style.visibility = "visible";
         setup.collapsed = !setup.collapsed;
         buttonActivateForm.innerHTML = "I changed my mind!";
     } else {
-        section.setAttribute("hidden", "hidden");
+        section.style.visibility = "hidden";
         setup.collapsed = !setup.collapsed;
         buttonActivateForm.innerHTML = "Create Savings Account!";
     }
