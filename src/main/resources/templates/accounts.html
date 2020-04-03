@@ -50,7 +50,7 @@
     <p class="headset">These are hard times. It does not hurt to do some savings. To make it easier for you
         <emphasis>now</emphasis>
         you can create a savings account here, in the comfort of your personal bank! Try it out! <strong>0
-            costs</strong>
+            costs</strong>,
         maximum benefit!
     </p>
 
@@ -63,24 +63,24 @@
 
             <label for="currency">Choose currency: </label>
             <select id="currency" th:field="*{currency}">
-                <option selected="selected" value="ron"><strong>RON</strong></option>
-                <option value="eur">&euro; Euro</option>
-                <option value="usd">&#36; US Dollar</option>
-                <option value="gbp">&#163; Liră sterlină</option>
+                <option selected="selected" value="RON"><strong>RON</strong></option>
+                <option value="EUR">&euro; Euro</option>
+                <option value="USD">&#36; US Dollar</option>
+                <option value="GBP">&#163; Liră sterlină</option>
             </select>
 
             <label for="amount">Amount: </label>
-            <input id="amount" max="99999" min="1" placeholder="0" step="5" th:field="*{amount}" type="number"/>
+            <input id="amount" max="99999" min="1" placeholder="0" th:field="*{amount}" type="number"/>
 
             <label for="starting">Starting date:</label>
             <input id="starting" min="01-01-1977" onfocus="(this.type='date')"
-                   placeholder="01-01-1977" type="text">
+                   placeholder="01-01-1977" th:field="*{startingWith}" type="text">
 
             <label for="occurrences">Choose frequency: </label>
-            <select id="occurrences" th:field="*{currency}">
-                <option selected="selected" value="monthly"><strong>Monthly</strong></option>
-                <option value="weekly">Weekly</option>
-                <option value="bi-weekly">Bi-Weekly</option>
+            <select id="occurrences" th:field="*{frequency}">
+                <option selected="selected" value="MONTHLY"><strong>Monthly</strong></option>
+                <option value="WEEKLY">Weekly</option>
+                <option value="BI_WEEKLY">Bi-Weekly</option>
             </select>
             <br/>
             <input type="submit" value="Submit"/> <input type="reset" value="Reset"/>

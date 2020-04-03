@@ -15,6 +15,7 @@ let setup = {
     if (dateObj) {
         dateObj.setAttribute("min", formattedDate);
         dateObj.setAttribute("placeholder", formattedDate);
+        dateObj.setAttribute("value", formattedDate);
     }
 
     return setup;

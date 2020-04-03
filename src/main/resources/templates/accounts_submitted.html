@@ -20,8 +20,15 @@
 
 <main>
 
-<section>
-        <p th:text="'Saving account created!'"/>
+    <section th:object="${account}">
+        <p th:text="'Savings account was created!'"/>
+        <ol>
+            <li>Account currency: <span th:text="${account.currency}"></span></li>
+            <li>Amount: <span th:text="${account.amount}"></span></li>
+            <li>Account type: <span th:text="${account.type}"></span></li>
+            <li>Savings startDate: <span th:text="${account.startingWith}"></span></li>
+            <li>Amount substation frequency: <span th:text="${account.frequency}"></span></li>
+        </ol>
     </section>
 
 </main>
