@@ -18,7 +18,7 @@ public class AccountsController {
     public static final BigDecimal DEFAULT_AMOUNT = BigDecimal.valueOf(5);
 
     @GetMapping()
-    public String test(@RequestParam(name = "name", required = false, defaultValue = "User") String name, Model model) {
+    public String getAccounts(@RequestParam(name = "name", required = false, defaultValue = "User") String name, Model model) {
         model.addAttribute("name", name);
         model.addAttribute("account", new AccountDto());
         return "accounts";
@@ -33,7 +33,7 @@ public class AccountsController {
         return "accounts_submitted";
     }
 
-    private void checkAndInit(@ModelAttribute AccountDto account) {
+    private void checkAndInit(final AccountDto account) {
         account.setType(SAVINGS);
 
         if (account.getStartingWith() == null) {
@@ -43,6 +43,5 @@ public class AccountsController {
         if (account.getAmount().compareTo(BigDecimal.ZERO) == 0) {
             account.setAmount(DEFAULT_AMOUNT);
         }
-        System.out.println(account);
     }
 }

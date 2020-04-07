@@ -1,5 +1,5 @@
 # Banking App
-Demo project for a a feature in a Banking App 
+Demo project for a feature in a Banking App.
 
 ## Setup
 
