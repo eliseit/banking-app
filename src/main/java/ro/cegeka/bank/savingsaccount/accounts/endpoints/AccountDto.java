@@ -11,9 +11,9 @@ import java.util.Date;
 @ToString
 public class AccountDto {
 
-    public String currency;
-    public String type;
-    public String frequency;
+    private String currency;
+    private String type;
+    private String frequency;
     private BigDecimal amount;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date startingWith;
