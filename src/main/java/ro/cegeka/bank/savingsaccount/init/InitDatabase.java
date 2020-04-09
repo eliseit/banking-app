@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import ro.cegeka.bank.savingsaccount.accounts.model.Account;
 import ro.cegeka.bank.savingsaccount.accounts.model.AccountType;
-import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.repository.UserRepository;
 
@@ -20,7 +19,7 @@ import static ro.cegeka.bank.savingsaccount.users.User.UserBuilder.user;
 public class InitDatabase {
 
     @Bean
-    CommandLineRunner init(UserRepository userRepository, AccountRepository accountRepository) {
+    CommandLineRunner init(UserRepository userRepository) {
         return args -> {
 
             User userCicero = user()

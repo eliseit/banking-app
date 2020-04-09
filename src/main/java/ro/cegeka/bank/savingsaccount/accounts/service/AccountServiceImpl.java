@@ -1,9 +1,8 @@
 package ro.cegeka.bank.savingsaccount.accounts.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.cegeka.bank.savingsaccount.accounts.endpoints.AccountDto;
+import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
 import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.model.Account;
 import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
@@ -18,7 +17,6 @@ public class AccountServiceImpl implements AccountService {
     private AccountMapper mapper;
     private AccountRepository repository;
 
-    @Autowired
     public AccountServiceImpl(AccountMapper mapper, AccountRepository repository) {
         this.mapper = mapper;
         this.repository = repository;

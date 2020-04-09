@@ -1,4 +1,4 @@
-package ro.cegeka.bank.savingsaccount.accounts.endpoints;
+package ro.cegeka.bank.savingsaccount.accounts.endpoints.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,26 +1,19 @@
 package ro.cegeka.bank.savingsaccount.accounts.endpoints;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
 import ro.cegeka.bank.savingsaccount.accounts.service.AccountService;
-
-import java.math.BigDecimal;
 
 @Controller
 @RequestMapping(AccountsController.ACCOUNTS_URL)
 public class AccountsController {
 
     public static final String ACCOUNTS_URL = "/accounts";
-
-    public static final String SAVINGS = "SAVINGS";
-    public static final BigDecimal DEFAULT_AMOUNT = BigDecimal.valueOf(5);
-
     private final AccountService service;
 
-    @Autowired
     public AccountsController(AccountService service) {
         this.service = service;
     }
