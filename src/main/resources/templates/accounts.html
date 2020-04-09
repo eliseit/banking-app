@@ -28,10 +28,25 @@
         <h3>Overview</h3>
         <p>All your accounts</p>
         <table id="display-accounts">
-            <th>Accounts</th>
+            <thead>
+            <th>Account</th>
             <th>Type</th>
             <th>Amount</th>
             <th>Currency</th>
+            </thead>
+
+            <tbody>
+            <tr th:if="${accounts.empty}">
+                <td colspan="4"> No Accounts Available</td>
+            </tr>
+
+            <tr th:each="accountr : ${accounts}">
+                <td><span th:text="${accountr.iban}"> Title </span></td>
+                <td><span th:text="${accountr.type}"> Type </span></td>
+                <td><span th:text="${accountr.amount}"> Amount </span></td>
+                <td><span th:text="${accountr.currency}"> currency </span></td>
+            </tr>
+
             <tr>
                 <td>INGBN0016250</td>
                 <td>Debit</td>
@@ -44,6 +59,8 @@
                 <td>44168.05</td>
                 <td>&euro; EUR</td>
             </tr>
+            </tbody>
+
         </table>
     </section>
 
