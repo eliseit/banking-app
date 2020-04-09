@@ -2,6 +2,7 @@
 
 Demo project for a feature in a banking  web app.
 
+![alt text](docs/app.png)
 ## Setup
 
  Clone the Git repository locally.
@@ -44,7 +45,10 @@ Demo project for a feature in a banking  web app.
    ```Using generated security password: 5de65cbc-be25-4089-9337-dfc5097af9f5```
 
 ### Data
+
    Access to H2 Database console is enabled for development purpose and is found [here](http://localhost:8080/h2-console/)
+![alt text](docs/h2-console.png)
+
 ## Requirements
 
 Model `USER` entity for which an option to crate a new `ACCOUNT` of type `SAVINGS`.
