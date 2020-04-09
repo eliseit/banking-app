@@ -7,6 +7,9 @@ import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.model.Account;
 import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static ro.cegeka.bank.savingsaccount.accounts.model.Account.AccountBuilder.account;
 import static ro.cegeka.bank.savingsaccount.accounts.model.AccountType.SAVINGS;
 
@@ -33,5 +36,10 @@ public class AccountServiceImpl implements AccountService {
 
 
         return mapper.toDto(repository.save(accountFromDto));
+    }
+
+    @Override
+    public List<AccountDto> findAll() {
+        return new ArrayList<>();
     }
 }

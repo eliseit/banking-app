@@ -20,8 +20,11 @@ public class AccountsController {
 
     @GetMapping()
     public String getAccounts(@RequestParam(name = "name", required = false, defaultValue = "User") String name, Model model) {
+
         model.addAttribute("name", name);
+        model.addAttribute("accounts", service.findAll());
         model.addAttribute("account", new AccountDto());
+
         return "accounts";
     }
 

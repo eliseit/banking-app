@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @Data
 public class AccountDto {
 
+    public String iban;
     public String currency;
     public AccountType type;
     public Frequency frequency;
