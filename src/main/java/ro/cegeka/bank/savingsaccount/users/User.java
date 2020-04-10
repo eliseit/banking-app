@@ -1,16 +1,13 @@
 package ro.cegeka.bank.savingsaccount.users;
 
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import ro.cegeka.bank.savingsaccount.accounts.model.Account;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
-import static org.hibernate.validator.internal.util.CollectionHelper.newHashSet;
-
 @Entity
-@ToString
 @NoArgsConstructor
 public class User {
 
@@ -21,7 +18,7 @@ public class User {
     private String name;
 
     @OneToMany(cascade = {CascadeType.PERSIST})
-    private Set<Account> accounts = newHashSet();
+    private Set<Account> accounts = new HashSet<>();
 
     private User(UserBuilder builder) {
         this.id = builder.id;
@@ -31,6 +28,10 @@ public class User {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public Set<Account> getAccounts() {
+        return this.accounts;
     }
 
     public static class UserBuilder {

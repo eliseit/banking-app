@@ -1,7 +1,6 @@
 package ro.cegeka.bank.savingsaccount.accounts.model;
 
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import ro.cegeka.bank.savingsaccount.users.User;
 
 import javax.money.CurrencyUnit;
@@ -11,7 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@ToString
 @NoArgsConstructor
 public class Account {
 

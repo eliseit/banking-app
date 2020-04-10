@@ -40,6 +40,11 @@ public class AccountDto {
         return this;
     }
 
+    public AccountDto withIban(String iban) {
+        this.iban = iban;
+        return this;
+    }
+
     public AccountDto withType(AccountType type) {
         this.type = type;
         return this;
