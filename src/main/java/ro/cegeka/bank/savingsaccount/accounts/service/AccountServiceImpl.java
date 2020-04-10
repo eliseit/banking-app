@@ -88,7 +88,7 @@ public class AccountServiceImpl implements AccountService {
                 .findFirst();
 
         if (existingSavingsAccount.isPresent()) {
-            throw new SavingsAccountAlreadyExists();
+            throw new SavingsAccountAlreadyExists("Only One Savings account can be opened by an User!");
         }
     }
 

@@ -4,12 +4,14 @@ package ro.cegeka.bank.savingsaccount.accounts.endpoints;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
 import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.service.AccountService;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.domain.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,4 +61,15 @@ public class AccountsController {
         return "accounts_submitted";
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ModelAndView processRuntimeException(final HttpServletRequest req, final RuntimeException ex) {
+
+        //logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("message", ex.getMessage());
+//        mav.addObject("exception", ex);
+
+        mav.setViewName("error");
+        return mav;
+    }
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width" name="viewport">
+    <title>Bank App - Account for ${name}</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>My Home Bank</h1>
+</header>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/accounts">My Accounts</a>
+</nav>
+
+<main>
+
+    <h1>The action performed was not completed!</h1>
+    <h2>Please check bellow details:</h2>
+    <table>
+
+        <tr>
+            <td>Message</td>
+            <td th:text="${message}"/>
+        </tr>
+
+    </table>
+    <section>
+        <p><span id="back"><a href="/accounts?name=Cicero">Back</a></span></p>
+    </section>
+    <p class="stickToBottom" id="localDateTime"></p>
+
+</main>
+<footer>
+    <script crossorigin="anonymous"
+            integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ="
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+</footer>
+</body>
+</html>
