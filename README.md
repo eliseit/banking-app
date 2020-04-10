@@ -21,6 +21,7 @@ Demo project for a feature in a banking  web app.
  * Spring Boot 2.x
  * Front end: Thymeleaf, HTML 5, CSS 3, Javascript
  * Maven dependency/build tool
+ * Testing: JUnit 5 & Mockito
   
 ## How to ...
 
