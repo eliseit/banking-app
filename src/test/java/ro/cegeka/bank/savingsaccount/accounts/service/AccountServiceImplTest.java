@@ -5,15 +5,16 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
-import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.model.AccountType;
 import ro.cegeka.bank.savingsaccount.accounts.model.Frequency;
-import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.domain.UserService;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,10 +29,6 @@ class AccountServiceImplTest {
     @Autowired
     public AccountService accountService;
 
-    @Mock
-    private AccountMapper mapper;
-    @Mock
-    private AccountRepository repository;
     @Mock
     private UserService userService;
 
@@ -60,4 +57,19 @@ class AccountServiceImplTest {
         assertThat(savingsAccount.getStartingWith()).isEqualTo(LocalDate.of(1987, 7, 24));
         assertThat(savingsAccount.getFrequency()).isEqualTo(Frequency.MONTHLY);
     }
+
+
+    @Test
+    public void clockTest() {
+
+        Instant getASundayBeforeNoon = Instant.now(Clock.fixed(
+                Instant.parse("2020-04-11T11:44:00Z")
+                , ZoneOffset.UTC)
+        );
+
+        System.out.println(getASundayBeforeNoon);
+
+    }
+
+
 }

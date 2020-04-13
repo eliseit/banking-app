@@ -9,7 +9,6 @@ import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
 import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.model.Account;
 import ro.cegeka.bank.savingsaccount.accounts.model.Frequency;
-import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.domain.UserService;
 
@@ -33,8 +32,6 @@ class AccountServiceIntegrationTest {
     @Autowired
     private AccountService accountService;
 
-    @MockBean
-    private AccountRepository accountRepository;
     @MockBean
     private UserService userService;
     @MockBean
