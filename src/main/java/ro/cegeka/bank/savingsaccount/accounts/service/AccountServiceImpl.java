@@ -9,9 +9,10 @@ import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.domain.UserService;
 
-import java.time.Instant;
-import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static ro.cegeka.bank.savingsaccount.accounts.model.Account.AccountBuilder.account;
 import static ro.cegeka.bank.savingsaccount.accounts.model.AccountType.SAVINGS;
@@ -20,18 +21,19 @@ import static ro.cegeka.bank.savingsaccount.accounts.model.AccountType.SAVINGS;
 @Transactional
 public class AccountServiceImpl implements AccountService {
 
-    public static final String NINE_AM = "09:00:00";
-    public static final String SIX_PM = "18:00:00";
+
     private static final String CICERO = "Cicero";
 
     private final AccountMapper mapper;
     private final AccountRepository repository;
     private final UserService userService;
+    private final DateTimeValidator temporalValidator;
 
-    public AccountServiceImpl(AccountMapper mapper, AccountRepository repository, UserService userService) {
+    public AccountServiceImpl(AccountMapper mapper, AccountRepository repository, UserService userService, DateTimeValidator temporalValidator) {
         this.mapper = mapper;
         this.repository = repository;
         this.userService = userService;
+        this.temporalValidator = temporalValidator;
     }
 
     public AccountDto createSavingsAccount(AccountDto createSavingAccountDto) {
@@ -42,8 +44,9 @@ public class AccountServiceImpl implements AccountService {
 
         checkIfSavingsAccountsAlreadyOpened(ciceroAccounts);
 
-        isBetween9AMand6PM();
-        isWorkingDay();
+        temporalValidator.isWorkingDay()
+                .and()
+                .isBetween9AMand6PM();
 
         Account newSavingsAccount = account()
                 .withCurrency(createSavingAccountDto.currency)
@@ -55,31 +58,6 @@ public class AccountServiceImpl implements AccountService {
         ciceroAccounts.add(newSavingsAccount);
 
         return mapper.toDto(newSavingsAccount);
-    }
-
-    private void isWorkingDay() {
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(Date.from(Instant.now()));
-
-        int dayOfTheWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
-        if ((dayOfTheWeek >= Calendar.MONDAY) && (dayOfTheWeek <= Calendar.FRIDAY)) {
-            return;
-        }
-
-        throw new SavingsAccountCannotBeOpened("Accounts can't be open outside working days!");
-    }
-
-    private void isBetween9AMand6PM() {
-
-        LocalTime now = LocalTime.now();
-
-        if (now.isAfter(LocalTime.parse(NINE_AM)) && now.isBefore(LocalTime.parse(SIX_PM))) {
-            return;
-        }
-
-        throw new SavingsAccountCannotBeOpened("Accounts can't be open during business hours");
     }
 
     private void checkIfSavingsAccountsAlreadyOpened(Set<Account> ciceroAccounts) {
