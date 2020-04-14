@@ -10,7 +10,6 @@ import ro.cegeka.bank.savingsaccount.accounts.model.Frequency;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @ToString
 @AllArgsConstructor
@@ -25,7 +24,6 @@ public class AccountDto {
     public BigDecimal amount;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate startingWith;
-    private LocalDateTime created;
     private long id;
 
     public static AccountDto accountDto() {
