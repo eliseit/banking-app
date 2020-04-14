@@ -2,11 +2,12 @@ package ro.cegeka.bank.savingsaccount.accounts.service;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto;
+import ro.cegeka.bank.savingsaccount.accounts.mapper.AccountMapper;
 import ro.cegeka.bank.savingsaccount.accounts.model.AccountType;
 import ro.cegeka.bank.savingsaccount.accounts.model.Frequency;
+import ro.cegeka.bank.savingsaccount.accounts.repository.AccountRepository;
 import ro.cegeka.bank.savingsaccount.users.User;
 import ro.cegeka.bank.savingsaccount.users.domain.UserService;
 
@@ -15,25 +16,38 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.HashSet;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static ro.cegeka.bank.savingsaccount.accounts.endpoints.dto.AccountDto.accountDto;
 import static ro.cegeka.bank.savingsaccount.users.User.UserBuilder.user;
 
-
 @SpringBootTest
 class AccountServiceImplTest {
 
-    @Autowired
     public AccountService accountService;
+
+    @Mock
+    private AccountMapper mapper;
+
+    @Mock
+    private AccountRepository repository;
 
     @Mock
     private UserService userService;
 
     @Test
-    public void happyPath() {
+    public void givenValidPreconditions_whenSavingsAccountIsOpen_thenAccountIsSaved() {
+
+        DateTimeValidator temporalValidator = new DateTimeValidator(Clock.fixed(
+                Instant.parse("2020-04-13T10:15:30.00Z"),
+                ZoneOffset.UTC));
+
+        accountService = new AccountServiceImpl(mapper, repository, userService, temporalValidator);
 
         AccountDto createAccountDto = accountDto()
                 .withCurrency("RON")
@@ -44,12 +58,13 @@ class AccountServiceImplTest {
 
         User cicero = user()
                 .withName("Cicero")
+                .withAccounts(new HashSet<>())
                 .build();
 
         when(userService.getUserByName("Cicero")).thenReturn(Optional.of(cicero));
+        when(mapper.toDto(any())).thenCallRealMethod();
 
         AccountDto savingsAccount = accountService.createSavingsAccount(createAccountDto);
-
 
         assertThat(savingsAccount.getCurrency()).isEqualTo("RON");
         assertThat(savingsAccount.getAmount()).isEqualTo(BigDecimal.TEN);
@@ -58,18 +73,28 @@ class AccountServiceImplTest {
         assertThat(savingsAccount.getFrequency()).isEqualTo(Frequency.MONTHLY);
     }
 
-
     @Test
-    public void clockTest() {
+    public void givenWeekendDay_whenAccountCreate_thenException() {
 
-        Instant getASundayBeforeNoon = Instant.now(Clock.fixed(
-                Instant.parse("2020-04-11T11:44:00Z")
-                , ZoneOffset.UTC)
-        );
+        DateTimeValidator temporalValidator = new DateTimeValidator(Clock.fixed(
+                Instant.parse("2020-04-11T10:15:30.00Z"),
+                ZoneOffset.UTC));
 
-        System.out.println(getASundayBeforeNoon);
+        accountService = new AccountServiceImpl(mapper, repository, userService, temporalValidator);
 
+        assertThrows(SavingsAccountCannotBeOpened.class, () -> accountService.createSavingsAccount(accountDto()));
     }
 
+    @Test
+    public void givenWorkDayButInvalidTime_whenAccountCreate_thenException() {
+
+        DateTimeValidator temporalValidator = new DateTimeValidator(Clock.fixed(
+                Instant.parse("2020-04-13T19:15:30.00Z"),
+                ZoneOffset.UTC));
+
+        accountService = new AccountServiceImpl(mapper, repository, userService, temporalValidator);
+
+        assertThrows(SavingsAccountCannotBeOpened.class, () -> accountService.createSavingsAccount(accountDto()));
+    }
 
 }

@@ -37,6 +37,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public AccountDto createSavingsAccount(AccountDto createSavingAccountDto) {
+        // fail fast
+        temporalValidator.isWorkingDay()
+                .and()
+                .isBetween9AMand6PM();
 
         // for the sake of simplicity we assume this user exists in DB
         User cicero = userService.getUserByName(CICERO).get();
@@ -44,9 +48,6 @@ public class AccountServiceImpl implements AccountService {
 
         checkIfSavingsAccountsAlreadyOpened(ciceroAccounts);
 
-        temporalValidator.isWorkingDay()
-                .and()
-                .isBetween9AMand6PM();
 
         Account newSavingsAccount = account()
                 .withCurrency(createSavingAccountDto.currency)
